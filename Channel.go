@@ -7,17 +7,17 @@ import (
 
 func main() {
 	// Channel 생성
-	channel := make(chan bool)
-	people := [2]string{"lee", "kim"}
+	channel := make(chan string)
+	people := []string{"lee", "kim", "a", "b", "c"}
 	for _, person := range people {
 		go isSexy(person, channel)
 	}
-	fmt.Println(<-channel)
-	fmt.Println(<-channel)
+	for i := 0; i < len(people); i++ {
+		fmt.Println(<-channel)
+	}
 }
 
-func isSexy(person string, channel chan bool) {
+func isSexy(person string, channel chan string) {
 	time.Sleep(time.Second * 5)
-	fmt.Println(person)
-	channel <- true
+	channel <- person + " is sexy"
 }
